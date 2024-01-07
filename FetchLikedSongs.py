@@ -14,7 +14,7 @@ import json
 import time
 import pandas as pd
 import os
-
+import requests
 
 # Setup Spotify API
 client_id = os.environ.get('SPOTIFY_CLIENT_ID')
@@ -35,15 +35,30 @@ results = sp.current_user_saved_tracks()
 
 liked_songs = []
 
+
+def get_audio_features(track_id):
+    while True:
+        try:
+            return sp.audio_features([track_id])[0]
+        except spotipy.exceptions.SpotifyException as e:
+            if e.http_status == 429:
+                retry_after = e.headers.get('Retry-After')
+                if retry_after is not None:
+                    time.sleep(int(retry_after))
+                else:
+                    time.sleep(10)  # Default delay
+            else:
+                raise
+
 # Iterate through the pages to retrieve all liked tracks
 while results:
     for item in results['items']:
         track = item['track']
-        time.sleep(0.5)  # Had to add a delay becaue of 429 error
+        time.sleep(5)  # Had to add a delay becaue of 429 error
         track_id = track['uri'].split(':')[-1]
         album_id = track['album']['uri'].split(':')[-1]
         artist_id = track['artists'][0]['uri'].split(':')[-1]
-        #audio_features = sp.audio_features([track_id])[0]
+        audio_features = get_audio_features(track_id)
         album = sp.album(album_id)
         artist = sp.artist(artist_id)
         # Storing data for studying later
@@ -56,7 +71,7 @@ while results:
             "popularity": track['popularity'],
             "genre": artist['genres'],
         }
-        #song_data.update(audio_features)
+        song_data.update(audio_features)
         liked_songs.append(song_data)
     if results['next']:
         results = sp.next(results)
