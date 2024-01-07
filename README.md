@@ -6,6 +6,11 @@ This project is focused on developing a personalized music recommendation system
 
 The current approach involves using the user's "Liked Songs" list from Spotify and retrieving the lyrics of these songs using the Genius API. Additionally, the project uses the Librosa library to analyze MP3 files of the liked songs and extract musical features. The lyrics and musical features are then analyzed to understand the user's preferences and recommend songs.
 
+## Issues
+
+During the development of this project, several issues were encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed.
+
+
 ## Features
 
 * **Genius API Integration**: Retrieves the lyrics of the user's liked songs from Spotify.
