@@ -9,7 +9,9 @@ The current approach involves using the user's "Liked Songs" list from Youtube M
 ## Issues
 
 During the development of this project, several issues were encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed. I am actively researching an alternate library
+
 ---
+
 # Genre Classification as a Stepping Stone
 
 Before diving into personalized song recommendations, we are tackling the challenge of classifying songs by genre. This is a crucial step that will help in understanding the underlying patterns in music that resonate with listeners' preferences. To achieve this, we are leveraging the GTZAN Dataset, a renowned dataset in the music information retrieval field.
@@ -55,7 +57,9 @@ After applying hyperparameter tuning on top of the stratified dataset, the accur
 The improvements in precision, recall, and F1-score across genres revealed that some genres are inherently more challenging to classify than others. For example, the F1-score for certain genres increased more significantly, suggesting that the model became better at balancing precision and recall for those genres after stratification and hyperparameter tuning.
 
 In conclusion, the combined effect of stratified splitting and hyperparameter tuning has led to a more accurate and reliable genre classification model. These steps have been instrumental in achieving a 6.65% overall increase in accuracy, along with consistent improvements across other key performance metrics.
+
 ---
+
 ## Features
 
 * **Genius API Integration**: Retrieves the lyrics of the user's liked songs from Youtube Music.
