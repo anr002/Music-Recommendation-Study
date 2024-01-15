@@ -22,7 +22,7 @@ The GTZAN dataset is the most-used public dataset for evaluation in machine list
 
 The dataset was collected in 2000-2001 from a variety of sources including personal CDs, radio, and microphone recordings, to represent a variety of recording conditions. This diversity in the dataset challenges our model to be robust and accurate across different recording qualities and environments.
 
-## K-Nearest Neighbors (KNN) for Genre Classification
+# K-Nearest Neighbors (KNN) for Genre Classification
 
 ## Purpose of the KNN Model
 
