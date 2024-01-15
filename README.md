@@ -20,6 +20,27 @@ The GTZAN dataset is the most-used public dataset for evaluation in machine list
 
 The dataset was collected in 2000-2001 from a variety of sources including personal CDs, radio, and microphone recordings, to represent a variety of recording conditions. This diversity in the dataset challenges our model to be robust and accurate across different recording qualities and environments.
 
+# Genre Classification Progress
+## Quantitative Assessment of Model Improvements
+
+The genre classification model's performance was significantly enhanced through stratified data splitting and hyperparameter tuning. The GTZAN dataset's structure, with genres arranged sequentially, necessitated a stratified approach to ensure balanced representation in training and test sets.
+
+### Performance Gains from Stratification
+
+The introduction of stratified splitting led to a substantial increase in model accuracy. Specifically, the accuracy improved by 6.15% from 64.5% to 68.5%. The macro average precision, recall, and F1-score also saw improvements, indicating a more balanced performance across genres.
+
+### Further Improvements with Hyperparameter Tuning
+
+After applying hyperparameter tuning on top of the stratified dataset, the accuracy saw an additional increase of 0.5%, reaching 69%. The macro average F1-score improved, reflecting a more nuanced understanding of genre classification by the model.
+
+### Genre-Specific Insights
+
+The improvements in precision, recall, and F1-score across genres revealed that some genres are inherently more challenging to classify than others. For example, the F1-score for certain genres increased more significantly, suggesting that the model became better at balancing precision and recall for those genres after stratification and hyperparameter tuning.
+
+In conclusion, the combined effect of stratified splitting and hyperparameter tuning has led to a more accurate and reliable genre classification model. These steps have been instrumental in achieving a 6.65% overall increase in accuracy, along with consistent improvements across other key performance metrics.
+
+# Cont. Overview of Overall Study
+
 ## Features
 
 * **Genius API Integration**: Retrieves the lyrics of the user's liked songs from Youtube Music.
