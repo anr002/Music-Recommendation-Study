@@ -10,36 +10,53 @@ The current approach involves using the user's "Liked Songs" list from Youtube M
 
 During the development of this project, several issues were encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed. I am actively researching an alternate library
 
-## Genre Classification as a Stepping Stone
+# Genre Classification as a Stepping Stone
 
 Before diving into personalized song recommendations, we are tackling the challenge of classifying songs by genre. This is a crucial step that will help in understanding the underlying patterns in music that resonate with listeners' preferences. To achieve this, we are leveraging the GTZAN Dataset, a renowned dataset in the music information retrieval field.
 
-### The GTZAN Dataset
+## The GTZAN Dataset
 
 The GTZAN dataset is the most-used public dataset for evaluation in machine listening research for music genre recognition (MGR). It contains 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format.
 
 The dataset was collected in 2000-2001 from a variety of sources including personal CDs, radio, and microphone recordings, to represent a variety of recording conditions. This diversity in the dataset challenges our model to be robust and accurate across different recording qualities and environments.
 
-# Genre Classification Progress
+## K-Nearest Neighbors (KNN) for Genre Classification
+
+## Purpose of the KNN Model
+
+The K-Nearest Neighbors (KNN) algorithm is a fundamental component of the music recommendation system being developed in this project. Its primary purpose is to classify songs into genres based on their audio features. By analyzing a song's characteristics and comparing them to a dataset of songs with known genres, the KNN model can predict the genre of an unknown song.
+
+## How the KNN Model Works
+
+KNN operates on a simple principle: it identifies the `k` closest data points to the new data point (in this case, a song) and assigns the most common class among those neighbors. For the genre classification task, the model considers various audio features extracted from the songs, such as tempo, chroma_stft, spectral contrast, and tonnetz, among others.
+
+## Importance of Genre Classification
+
+Genre classification serves as a stepping stone towards building a more personalized music recommendation system. By understanding the genres a user prefers, the system can make more informed recommendations that align with the user's tastes.
+
+## Model Training and Evaluation
+
+The KNN model is trained on the GTZAN dataset, which is a collection of songs across different genres. To ensure a fair and representative training process, the dataset is split using stratified sampling, maintaining the proportion of each genre in both training and test sets. The model's performance is evaluated based on accuracy, precision, recall, and F1-score, which are critical metrics for assessing the quality of the classification.
+
 ## Quantitative Assessment of Model Improvements
 
 The genre classification model's performance was significantly enhanced through stratified data splitting and hyperparameter tuning. The GTZAN dataset's structure, with genres arranged sequentially, necessitated a stratified approach to ensure balanced representation in training and test sets.
 
-### Performance Gains from Stratification
+## Performance Gains from Stratification
 
 The introduction of stratified splitting led to a substantial increase in model accuracy. Specifically, the accuracy improved from 64.5% to 68.5%. The macro average precision, recall, and F1-score also saw improvements, indicating a more balanced performance across genres.
 
-### Further Improvements with Hyperparameter Tuning
+## Further Improvements with Hyperparameter Tuning
 
 After applying hyperparameter tuning on top of the stratified dataset, the accuracy saw an additional increase of 0.5%, reaching 69%. The macro average F1-score improved, reflecting a more nuanced understanding of genre classification by the model.
 
-### Genre-Specific Insights
+## Genre-Specific Insights
 
 The improvements in precision, recall, and F1-score across genres revealed that some genres are inherently more challenging to classify than others. For example, the F1-score for certain genres increased more significantly, suggesting that the model became better at balancing precision and recall for those genres after stratification and hyperparameter tuning.
 
 In conclusion, the combined effect of stratified splitting and hyperparameter tuning has led to a more accurate and reliable genre classification model. These steps have been instrumental in achieving a 6.65% overall increase in accuracy, along with consistent improvements across other key performance metrics.
 
-# Cont. Overview of Overall Study
+
 
 ## Features
 
