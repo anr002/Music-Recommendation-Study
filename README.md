@@ -27,7 +27,7 @@ The genre classification model's performance was significantly enhanced through 
 
 ### Performance Gains from Stratification
 
-The introduction of stratified splitting led to a substantial increase in model accuracy. Specifically, the accuracy improved by 6.15% from 64.5% to 68.5%. The macro average precision, recall, and F1-score also saw improvements, indicating a more balanced performance across genres.
+The introduction of stratified splitting led to a substantial increase in model accuracy. Specifically, the accuracy improved from 64.5% to 68.5%. The macro average precision, recall, and F1-score also saw improvements, indicating a more balanced performance across genres.
 
 ### Further Improvements with Hyperparameter Tuning
 
