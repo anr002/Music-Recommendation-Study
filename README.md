@@ -4,19 +4,28 @@
 
 This project is focused on developing a personalized music recommendation system. Initially, the project aimed to use Spotify's API to fetch song attributes and train machine learning models. However, due to Spotify's Terms of Service, which disallow training machine learning models with its API, the project had to pivot.
 
-The current approach involves using the user's "Liked Songs" list from Spotify and retrieving the lyrics of these songs using the Genius API. Additionally, the project uses the Librosa library to analyze MP3 files of the liked songs and extract musical features. The lyrics and musical features are then analyzed to understand the user's preferences and recommend songs.
+The current approach involves using the user's "Liked Songs" list from Youtube Music and retrieving the lyrics of these songs using the Genius API. Additionally, the project uses the Librosa library to analyze MP3 files of the liked songs and extract musical features. The lyrics and musical features are then analyzed to understand the user's preferences and recommend songs.
 
 ## Issues
 
 During the development of this project, several issues were encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed. I am actively researching an alternate library
 
+## Genre Classification as a Stepping Stone
+
+Before diving into personalized song recommendations, we are tackling the challenge of classifying songs by genre. This is a crucial step that will help in understanding the underlying patterns in music that resonate with listeners' preferences. To achieve this, we are leveraging the GTZAN Dataset, a renowned dataset in the music information retrieval field.
+
+### The GTZAN Dataset
+
+The GTZAN dataset is the most-used public dataset for evaluation in machine listening research for music genre recognition (MGR). It contains 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format.
+
+The dataset was collected in 2000-2001 from a variety of sources including personal CDs, radio, and microphone recordings, to represent a variety of recording conditions. This diversity in the dataset challenges our model to be robust and accurate across different recording qualities and environments.
 
 ## Features
 
-* **Genius API Integration**: Retrieves the lyrics of the user's liked songs from Spotify.
+* **Genius API Integration**: Retrieves the lyrics of the user's liked songs from Youtube Music.
 * **Librosa Analysis**: Analyzes the user's liked songs to extract musical features such as tempo, chroma_stft, spec_contrast, and tonnetz.
 * **Lyrics Analysis**: Analyzes the lyrics of user-liked songs to extract features.
-* **User Interface**: A Tkinter-based GUI for rating songs and interacting with Spotify. The GUI is currently in a rough state, and future plans include using a different library for a more user-friendly interface.
+* **User Interface**: A Tkinter-based GUI for rating songs and interacting with Spotify to play songs. The GUI is currently in a rough state, and future plans include using a different library for a more user-friendly interface.
 
 ## Librosa Analysis
 
