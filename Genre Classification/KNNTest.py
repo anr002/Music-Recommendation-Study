@@ -4,7 +4,8 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 import numpy as np
-
+import os
+import joblib
 
 # Load the dataset
 data_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\Data\\features_30_sec.csv'
@@ -63,3 +64,16 @@ preprocessed_data_path = 'C:\\Users\\andre\\OneDrive\\Documents\\Data Science Pr
 np.savez(preprocessed_data_path, X_train=X_train, y_train=y_train)
 
 
+# Create a Model directory if it doesn't exist
+model_dir = 'C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model'
+if not os.path.exists(model_dir):
+    os.makedirs(model_dir)
+
+# Save the KNN model
+joblib.dump(knn, os.path.join(model_dir, 'knn_model.pkl'))
+
+# Save the scaler
+joblib.dump(scaler, os.path.join(model_dir, 'scaler.pkl'))
+
+# Save the label encoder
+joblib.dump(label_encoder, os.path.join(model_dir, 'label_encoder.pkl'))
