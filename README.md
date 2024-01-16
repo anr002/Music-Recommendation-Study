@@ -63,7 +63,7 @@ In conclusion, the combined effect of stratified splitting and hyperparameter tu
 ## Feature Extraction and Genre Classification Update
 
 ### Data Preparation
-To enhance the genre classification capabilities of the KNN model, a collection of classic jazz songs was curated. These songs havere downloaded in various formats and then converted to `.wav` format using Audacity, ensuring consistency in audio quality and format for feature extraction.
+To enhance the genre classification capabilities of the KNN model, a collection of classic jazz songs was curated. These songs have been downloaded in various formats and then converted to `.wav` format using Audacity, ensuring consistency in audio quality and format for feature extraction.
 
 ### Feature Extraction
 The feature extraction process is a critical step in the genre classification pipeline. Using the `librosa` library, a comprehensive set of features was extracted from each audio file, which includes:
@@ -81,17 +81,17 @@ The feature extraction process is a critical step in the genre classification pi
 Each feature captures a different characteristic of the audio signal, contributing to a robust representation of the song's musical qualities.
 
 ### KNN Model for Genre Classification
-The extracted features havere then scaled and fed into a pre-trained K-Nearest Neighbors (KNN) model. This model was initially trained on the GTZAN dataset, which is a standard dataset for music genre classification tasks. By providing the model with a rich set of features from the classic jazz songs, it was able to predict the genre with a high degree of accuracy.
+The extracted features were then scaled and fed into a pre-trained K-Nearest Neighbors (KNN) model. This model was initially trained on the GTZAN dataset, which is a standard dataset for music genre classification tasks. By providing the model with a rich set of features from the classic jazz songs, it was able to predict the genre with a high degree of accuracy.
 
-The predicted genres provide insights into the similarities bethaveen the classic jazz pieces and the various genres present in the GTZAN dataset, demonstrating the model's ability to generalize beyond its initial training data.
+The predicted genres provide insights into the similarities between the classic jazz pieces and the various genres present in the GTZAN dataset, demonstrating the model's ability to generalize beyond its initial training data.
 
 ### Successful Genre Prediction for Jazz Songs
 
-have have achieved significant success with the K-Nearest Neighbors (KNN) model in predicting the genre of classic jazz songs. This milestone is particularly exciting as it demonstrates the model's robustness and its ability to accurately classify genres even within the nuanced and complex realm of jazz music.
+I have achieved significant success with the K-Nearest Neighbors (KNN) model in predicting the genre of classic jazz songs. This milestone is particularly exciting as it demonstrates the model's robustness and its ability to accurately classify genres even within the nuanced and complex realm of jazz music.
 
 ### Building a Test Dataset
 
-Currently, have are in the process of compiling a comprehensive dataset of songs across various genres to serve as a test bed for our model. This dataset will not only help in validating the accuracy of our genre classification model but will also aid in fine-tuning the model's performance. The goal is to create a diverse and rich dataset that reflects a wide spectrum of musical attributes and styles, ensuring that our music recommendation system can cater to a broad range of user preferences.
+Currently, we are in the process of compiling a comprehensive dataset of songs across various genres to serve as a test bed for our model. This dataset will not only help in validating the accuracy of our genre classification model but will also aid in fine-tuning the model's performance. The goal is to create a diverse and rich dataset that reflects a wide spectrum of musical attributes and styles, ensuring that our music recommendation system can cater to a broad range of user preferences.
 
 
 ---
