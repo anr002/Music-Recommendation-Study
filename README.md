@@ -2,19 +2,19 @@
 
 ## Overview
 
-This project is focused on developing a personalized music recommendation system. Initially, the project aimed to use Spotify's API to fetch song attributes and train machine learning models. Hohavever, due to Spotify's Terms of Service, which disallow training machine learning models with its API, the project had to pivot.
+This project is focused on developing a personalized music recommendation system. Initially, the project aimed to use Spotify's API to fetch song attributes and train machine learning models. However, due to Spotify's Terms of Service, which disallow training machine learning models with its API, the project had to pivot.
 
 The current approach involves using the user's "Liked Songs" list from Youtube Music and retrieving the lyrics of these songs using the Genius API. Additionally, the project uses the Librosa library to analyze MP3 files of the liked songs and extract musical features. The lyrics and musical features are then analyzed to understand the user's preferences and recommend songs.
 
 ## Issues
 
-During the development of this project, several issues havere encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed. I am actively researching an alternate library
+During the development of this project, several issues were encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed. I am actively researching an alternate library
 
 ---
 
 # Genre Classification as a Stepping Stone
 
-Before diving into personalized song recommendations, have are tackling the challenge of classifying songs by genre. This is a crucial step that will help in understanding the underlying patterns in music that resonate with listeners' preferences. To achieve this, have are leveraging the GTZAN Dataset, a renowned dataset in the music information retrieval field.
+Before diving into personalized song recommendations, we are tackling the challenge of classifying songs by genre. This is a crucial step that will help in understanding the underlying patterns in music that resonate with listeners' preferences. To achieve this, we are leveraging the GTZAN Dataset, a renowned dataset in the music information retrieval field.
 
 ## The GTZAN Dataset
 
@@ -109,8 +109,8 @@ Librosa is a Python library for music and audio analysis. It provides the buildi
 
 * **Tempo**: The speed or pace of a given piece of music.
 * **Chroma_stft**: A representation of the audio that shows how the intensity of different pitches changes over time.
-* **Spec_contrast**: The difference in amplitude bethaveen peaks and valleys in a sound spectrum.
-* **Tonnetz**: A representation of harmonic relations bethaveen different pitches.
+* **Spec_contrast**: The difference in amplitude between peaks and valleys in a sound spectrum.
+* **Tonnetz**: A representation of harmonic relations between different pitches.
 
 ## Lyrics Analysis
 
