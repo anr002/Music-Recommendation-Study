@@ -7,6 +7,9 @@ import librosa
 
 ### In order to properly classify new songs, it is important to obtain the same data the GTZAN dataset gave which is what we used to train the classifier.
 
+### Add a user input function that takes in if the provided prediction was correct or not. If correct continue and append data to the relevant  dataset section
+
+### 
 
 # Function to extract features from a song file
 # Notice that the duration is 30 seconds. The GTZAN dataset provided data for a 3 second snippet and a 30 second snippet. The 30 second set was used for training
@@ -61,7 +64,7 @@ knn_model = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Pro
 label_encoder = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\label_encoder.pkl') 
 
 # Path to the new song file
-new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Let It Happen.wav'  
+new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Destroyer_Of_Worlds.wav'  
 
 # Extract features from the new song
 new_song_features = extract_features(new_song_path)
