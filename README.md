@@ -1,5 +1,22 @@
 # Music Recommendation Study
 
+## Table of Contents
+- [Overview](#overview)
+- [Issues](#issues)
+- [Genre Classification as a Stepping Stone](#genre-classification-as-a-stepping-stone)
+  - [The GTZAN Dataset](#the-gtzan-dataset)
+  - [K-Nearest Neighbors (KNN) for Genre Classification](#k-nearest-neighbors-knn-for-genre-classification)
+- [Feature Extraction and Genre Classification Update](#feature-extraction-and-genre-classification-update)
+  - [Data Preparation](#data-preparation)
+  - [Feature Extraction](#feature-extraction)
+  - [KNN Model for Genre Classification](#knn-model-for-genre-classification)
+  - [Successful Genre Prediction for Jazz Songs](#successful-genre-prediction-for-jazz-songs)
+  - [Building a Test Dataset](#building-a-test-dataset)
+- [Features](#features)
+- [Librosa Analysis](#librosa-analysis)
+- [Lyrics Analysis](#lyrics-analysis)
+- [Future Work](#future-work)
+
 ## Overview
 
 This project is focused on developing a personalized music recommendation system. Initially, the project aimed to use Spotify's API to fetch song attributes and train machine learning models. However, due to Spotify's Terms of Service, which disallow training machine learning models with its API, the project had to pivot.
