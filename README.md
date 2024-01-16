@@ -17,6 +17,10 @@
 - [Lyrics Analysis](#lyrics-analysis)
 - [Future Work](#future-work)
 
+## Current Updates
+
+The KNN model has had awesome performance. I am currently implementing a reinformcement learning aspect to the model where songs being tested, if incorrect, return a prompt asking the user to provide the correct Genre. This new song is appended to the dataset to later be used for retraining.
+
 ## Overview
 
 This project is focused on developing a personalized music recommendation system. Initially, the project aimed to use Spotify's API to fetch song attributes and train machine learning models. However, due to Spotify's Terms of Service, which disallow training machine learning models with its API, the project had to pivot.
