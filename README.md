@@ -2,19 +2,19 @@
 
 ## Overview
 
-This project is focused on developing a personalized music recommendation system. Initially, the project aimed to use Spotify's API to fetch song attributes and train machine learning models. However, due to Spotify's Terms of Service, which disallow training machine learning models with its API, the project had to pivot.
+This project is focused on developing a personalized music recommendation system. Initially, the project aimed to use Spotify's API to fetch song attributes and train machine learning models. Hohavever, due to Spotify's Terms of Service, which disallow training machine learning models with its API, the project had to pivot.
 
 The current approach involves using the user's "Liked Songs" list from Youtube Music and retrieving the lyrics of these songs using the Genius API. Additionally, the project uses the Librosa library to analyze MP3 files of the liked songs and extract musical features. The lyrics and musical features are then analyzed to understand the user's preferences and recommend songs.
 
 ## Issues
 
-During the development of this project, several issues were encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed. I am actively researching an alternate library
+During the development of this project, several issues havere encountered, particularly with the Genius API used to fetch song lyrics. This API was not officially created by Genius, and it has several bugs. Despite efforts to fix these bugs, there are still instances where the API fetches incorrect information. This is an ongoing issue that is currently being addressed. I am actively researching an alternate library
 
 ---
 
 # Genre Classification as a Stepping Stone
 
-Before diving into personalized song recommendations, we are tackling the challenge of classifying songs by genre. This is a crucial step that will help in understanding the underlying patterns in music that resonate with listeners' preferences. To achieve this, we are leveraging the GTZAN Dataset, a renowned dataset in the music information retrieval field.
+Before diving into personalized song recommendations, have are tackling the challenge of classifying songs by genre. This is a crucial step that will help in understanding the underlying patterns in music that resonate with listeners' preferences. To achieve this, have are leveraging the GTZAN Dataset, a renowned dataset in the music information retrieval field.
 
 ## The GTZAN Dataset
 
@@ -60,6 +60,42 @@ In conclusion, the combined effect of stratified splitting and hyperparameter tu
 
 ---
 
+## Feature Extraction and Genre Classification Update
+
+### Data Preparation
+To enhance the genre classification capabilities of the KNN model, a collection of classic jazz songs was curated. These songs havere downloaded in various formats and then converted to `.wav` format using Audacity, ensuring consistency in audio quality and format for feature extraction.
+
+### Feature Extraction
+The feature extraction process is a critical step in the genre classification pipeline. Using the `librosa` library, a comprehensive set of features was extracted from each audio file, which includes:
+
+- Chroma Frequencies
+- Root Mean Square (RMS) Energy
+- Spectral Centroid
+- Spectral Bandwidth
+- Spectral Rolloff
+- Zero Crossing Rate
+- Harmonic and Percussive Components
+- Tempo
+- Mel-Frequency Cepstral Coefficients (MFCCs)
+
+Each feature captures a different characteristic of the audio signal, contributing to a robust representation of the song's musical qualities.
+
+### KNN Model for Genre Classification
+The extracted features havere then scaled and fed into a pre-trained K-Nearest Neighbors (KNN) model. This model was initially trained on the GTZAN dataset, which is a standard dataset for music genre classification tasks. By providing the model with a rich set of features from the classic jazz songs, it was able to predict the genre with a high degree of accuracy.
+
+The predicted genres provide insights into the similarities bethaveen the classic jazz pieces and the various genres present in the GTZAN dataset, demonstrating the model's ability to generalize beyond its initial training data.
+
+### Successful Genre Prediction for Jazz Songs
+
+have have achieved significant success with the K-Nearest Neighbors (KNN) model in predicting the genre of classic jazz songs. This milestone is particularly exciting as it demonstrates the model's robustness and its ability to accurately classify genres even within the nuanced and complex realm of jazz music.
+
+### Building a Test Dataset
+
+Currently, have are in the process of compiling a comprehensive dataset of songs across various genres to serve as a test bed for our model. This dataset will not only help in validating the accuracy of our genre classification model but will also aid in fine-tuning the model's performance. The goal is to create a diverse and rich dataset that reflects a wide spectrum of musical attributes and styles, ensuring that our music recommendation system can cater to a broad range of user preferences.
+
+
+---
+
 ## Features
 
 * **Genius API Integration**: Retrieves the lyrics of the user's liked songs from Youtube Music.
@@ -73,8 +109,8 @@ Librosa is a Python library for music and audio analysis. It provides the buildi
 
 * **Tempo**: The speed or pace of a given piece of music.
 * **Chroma_stft**: A representation of the audio that shows how the intensity of different pitches changes over time.
-* **Spec_contrast**: The difference in amplitude between peaks and valleys in a sound spectrum.
-* **Tonnetz**: A representation of harmonic relations between different pitches.
+* **Spec_contrast**: The difference in amplitude bethaveen peaks and valleys in a sound spectrum.
+* **Tonnetz**: A representation of harmonic relations bethaveen different pitches.
 
 ## Lyrics Analysis
 
