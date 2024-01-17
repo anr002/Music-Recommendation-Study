@@ -61,7 +61,7 @@ knn_model = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Pro
 label_encoder = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\label_encoder.pkl') 
 
 # Path to the new song file
-new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Let It Happen.wav'  
+new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Destroyer_Of_Worlds.wav'  
 
 # Extract features from the new song
 new_song_features = extract_features(new_song_path)
