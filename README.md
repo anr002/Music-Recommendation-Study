@@ -19,7 +19,7 @@
 
 ## Current Updates
 
-The KNN model has had awesome performance. I am currently implementing a reinformcement learning aspect to the model where songs being tested, if incorrect, return a prompt asking the user to provide the correct Genre. This new song is appended to the dataset to later be used for retraining.
+The KNN model has had awesome performance. I am currently implementing a active learning aspect to the model where songs being tested, if incorrect, return a prompt asking the user to provide the correct Genre. This new song is appended to the dataset to later be used for retraining.
 
 ## Overview
 
