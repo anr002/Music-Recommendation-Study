@@ -19,6 +19,8 @@
 
 ## Current Updates
 
+I am currently improving the dataset with my active learning changes. I am building out the dataset to now have alternative, house music, and Drum and Bass.
+
 The KNN model has had awesome performance. I am currently implementing a active learning aspect to the model where songs being tested, if incorrect, return a prompt asking the user to provide the correct Genre. This new song is appended to the dataset to later be used for retraining.
 
 ## Overview
