@@ -55,25 +55,46 @@ def extract_features(file_name):
     features = np.hstack((length, features))
     return features
 
+# Define the feature names as they were in the training data
+feature_names = [
+    'length', 'chroma_stft_mean', 'chroma_stft_var', 'rms_mean', 'rms_var',
+    'spectral_centroid_mean', 'spectral_centroid_var', 'spectral_bandwidth_mean',
+    'spectral_bandwidth_var', 'rolloff_mean', 'rolloff_var',
+    'zero_crossing_rate_mean', 'zero_crossing_rate_var', 'harmony_mean',
+    'harmony_var', 'perceptr_mean', 'perceptr_var', 'tempo'
+]
+
+# Append the mean and variance of each MFCC (20 MFCCs total)
+for i in range(1, 21):
+    feature_names.append(f'mfcc{i}_mean')
+    feature_names.append(f'mfcc{i}_var')
+
 # Load the trained scaler and KNN model
 scaler = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\scaler.pkl')  
 knn_model = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\knn_model.pkl')  
 label_encoder = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\label_encoder.pkl') 
 
 # Path to the new song file
-new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Destroyer_Of_Worlds.wav'  
+new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\50_Cent_In_Da_Club.wav'  
 
 # Extract features from the new song
 new_song_features = extract_features(new_song_path)
 
-# Reshape the features for the scaler and model if necessary
-new_song_features = np.array(new_song_features).reshape(1, -1)
+# Create a DataFrame with the same feature names as the training data
+new_song_features_df = pd.DataFrame([new_song_features], columns=feature_names)
 
 # Scale the features using the loaded scaler
-new_song_features_scaled = scaler.transform(new_song_features)
+new_song_features_scaled = scaler.transform(new_song_features_df)
 
 # Predict the genre
 predicted_genre_index = knn_model.predict(new_song_features_scaled)
 predicted_genre = label_encoder.inverse_transform(predicted_genre_index)
 
+# Calculate the confidence level
+confidence_level = knn_model.predict_proba(new_song_features_scaled)
+
+# Obtain confidence level of the predicted genre
+predicted_genre_confidence = confidence_level[0][predicted_genre_index[0]]
+
 print(f"The predicted genre of the song is: {predicted_genre[0]}")
+print(f"The confidence level of the prediction is: {predicted_genre_confidence}")

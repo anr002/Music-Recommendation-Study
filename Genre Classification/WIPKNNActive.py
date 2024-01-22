@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 import librosa
+import os
 
 ### In order to properly classify new songs, it is important to obtain the same data the GTZAN dataset gave which is what we used to train the classifier.
 
@@ -70,13 +71,23 @@ for i in range(1, 21):
     feature_names.append(f'mfcc{i}_mean')
     feature_names.append(f'mfcc{i}_var')
 
+# Load the existing dataset into a separate DataFrame
+df_original = pd.read_csv('C:\\Users\\andre\\Downloads\\GTZAN\\Data\\features_30_secActive.csv')
+
+# Create a copy of the DataFrame and drop the 'filename' column
+df = df_original.copy()
+df = df.drop('filename', axis=1)
+
 # Load the trained scaler and KNN model
 scaler = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\scaler.pkl')  
 knn_model = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\knn_model.pkl')  
 label_encoder = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\label_encoder.pkl') 
 
-# Path to the new song file
-new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Destroyer_Of_Worlds.wav'  
+# Path to  new song file
+new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Let_It_Happen.wav'  
+
+# Extract the filename from the file path
+new_song_filename = os.path.basename(new_song_path)
 
 # Extract features from the new song
 new_song_features = extract_features(new_song_path)
@@ -90,5 +101,55 @@ new_song_features_scaled = scaler.transform(new_song_features_df)
 # Predict the genre
 predicted_genre_index = knn_model.predict(new_song_features_scaled)
 predicted_genre = label_encoder.inverse_transform(predicted_genre_index)
+# Calculate the confidence level
+confidence_level = knn_model.predict_proba(new_song_features_scaled)
+
+# Obtain confidence level of the predicted genre
+predicted_genre_confidence = confidence_level[0][predicted_genre_index[0]]
 
 print(f"The predicted genre of the song is: {predicted_genre[0]}")
+print(f"The confidence level of the prediction is: {predicted_genre_confidence}")
+
+genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
+genre_numbers = list(range(1, len(genres) + 1))
+genre_dict = dict(zip(genre_numbers, genres))
+
+# Ask for user feedback
+feedback = input("Is the predicted genre correct? (yes/no/skip): ")
+
+# Append the new data to your dataset
+if feedback.lower() == 'yes':
+    new_song_features_with_label = np.append(new_song_features, predicted_genre[0])
+    new_data = pd.DataFrame(new_song_features_with_label.reshape(1, -1), columns=df.columns)
+    new_data['filename'] = new_song_filename 
+elif feedback.lower() == 'no':
+    print("Please enter the number corresponding to the correct genre:")
+    for number, genre in genre_dict.items():
+        print(f"{number}: {genre}")
+    correct_genre_number = int(input())
+    correct_genre = genre_dict[correct_genre_number]
+    new_song_features_with_label = np.append(new_song_features, correct_genre)
+    new_data = pd.DataFrame(new_song_features_with_label.reshape(1, -1), columns=df.columns)
+    new_data['filename'] = new_song_filename 
+elif feedback.lower() == 'skip':
+    print("Skipping data addition.")
+else:
+    print("Invalid feedback. Data will not be added.")
+
+# Only append and save the data if the feedback is 'yes' or 'no'
+if feedback.lower() in ['yes', 'no']:
+    # Find the index where the new genre starts
+    start_index = df_original[df_original['label'] == new_data['label'].values[0]].index[0]
+
+    # Split the DataFrame at the start index
+    df1 = df_original.iloc[:start_index]
+    df2 = df_original.iloc[start_index:]
+
+    # Append new data to the first part of the DataFrame
+    df1 = pd.concat([df1, new_data], ignore_index=True)
+
+    # Concatenate the second part back to the DataFrame
+    df_original = pd.concat([df1, df2], ignore_index=True)
+
+    # Save the updated dataset
+    df_original.to_csv('C:\\Users\\andre\\Downloads\\GTZAN\\Data\\features_30_secActive.csv', index=False)
