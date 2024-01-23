@@ -12,17 +12,7 @@ import sys
 
 ### Add a user input function that takes in if the provided prediction was correct or not. If correct continue and append data to the relevant  dataset section
 
-# Load the genres list and genre_dict dictionary
-try:
-    with open('genres.pkl', 'rb') as f:
-        genres = pickle.load(f)
-    with open('genre_dict.pkl', 'rb') as f:
-        genre_dict = pickle.load(f)
-except FileNotFoundError:
-    # If the files do not exist, initialize with the default values
-    genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
-    genre_numbers = list(range(1, len(genres) + 1))
-    genre_dict = dict(zip(genre_numbers, genres))
+
 
 # Function to extract features from a song file
 # Notice that the duration is 30 seconds. The GTZAN dataset provided data for a 3 second snippet and a 30 second snippet. The 30 second set was used for training
@@ -98,7 +88,7 @@ knn_model = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Pro
 label_encoder = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\label_encoder.pkl') 
 
 # Path to  new song file
-new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\What You Know.wav'
+new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Crowd Control.wav'
 
 # Extract the filename from the file path
 new_song_filename = os.path.basename(new_song_path)
@@ -112,6 +102,11 @@ new_song_features_df = pd.DataFrame([new_song_features], columns=feature_names)
 # Scale the features using the loaded scaler
 new_song_features_scaled = scaler.transform(new_song_features_df)
 
+# Extract the unique genres from the 'label' column
+genres = df_original['label'].unique().tolist()
+genre_numbers = list(range(1, len(genres) + 1))
+genre_dict = dict(zip(genre_numbers, genres))
+print(genre_dict)
 # Predict the genre
 predicted_genre_index = knn_model.predict(new_song_features_scaled)
 predicted_genre = label_encoder.inverse_transform(predicted_genre_index)
@@ -128,9 +123,7 @@ print(f"The confidence level of the prediction is: {predicted_genre_confidence}\
 for i, genre in enumerate(label_encoder.classes_):
     print(f"The confidence level that the song is {genre} is: {confidence_level[0][i]}")
 
-genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
-genre_numbers = list(range(1, len(genres) + 1))
-genre_dict = dict(zip(genre_numbers, genres))
+
 
 # Ask for user feedback
 feedback = input("Is the predicted genre correct? (yes/no/new/skip): ")
@@ -142,17 +135,9 @@ if feedback.lower() == 'yes':
     new_data['filename'] = new_song_filename 
 elif feedback.lower() == 'no':
     # Load the genres list and genre_dict dictionary again
-    try:
-        with open('genres.pkl', 'rb') as f:
-            genres = pickle.load(f)
-        with open('genre_dict.pkl', 'rb') as f:
-            genre_dict = pickle.load(f)
-    except FileNotFoundError:
-        print("Error: genres.pkl or genre_dict.pkl not found.")
-        sys.exit()
 
     print("Please enter the number corresponding to the correct genre:")
-    for number, genre in genre_dict.items():
+    for number, genre in sorted(genre_dict.items()):
         print(f"{number}: {genre}")
     correct_genre_number = int(input())
     correct_genre = genre_dict[correct_genre_number]
@@ -162,7 +147,7 @@ elif feedback.lower() == 'no':
 
 elif feedback.lower() == 'new':
     new_genre = input("Please enter the new genre: ")
-    if new_genre in genres:
+    if new_genre.lower() in (genre.lower() for genre in genres):
         print("Error: This genre already exists.")
         sys.exit()
     new_song_features_with_label = np.append(new_song_features, new_genre)
@@ -172,15 +157,13 @@ elif feedback.lower() == 'new':
     genres.append(new_genre)
     genre_numbers = list(range(1, len(genres) + 1))
     genre_dict = dict(zip(genre_numbers, genres))
-    # Save the updated genres list and genre_dict dictionary
-    with open('genres.pkl', 'wb') as f:
-        pickle.dump(genres, f)
-    with open('genre_dict.pkl', 'wb') as f:
-        pickle.dump(genre_dict, f)
+
+
 elif feedback.lower() == 'skip':
     print("Skipping data addition.")
 else:
     print("Invalid feedback. Data will not be added.")
+
 
 # Only append and save the data if the feedback is 'yes', 'no', or 'new'
 if feedback.lower() in ['yes', 'no', 'new']:

@@ -8,7 +8,7 @@ import os
 import joblib
 
 # Load the dataset
-data_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\Data\\features_30_sec.csv'
+data_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\Data\\features_30_secActive.csv'
 df = pd.read_csv(data_path)
 
 # Explore the data
@@ -41,7 +41,7 @@ X = scaler.fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
 # Initialize the KNN classifier with the optimized hyperparameters
-knn = KNeighborsClassifier(n_neighbors=4, weights='distance', p=1)
+knn = KNeighborsClassifier(n_neighbors=6, weights='distance', p=1)
 
 # Train the classifier
 knn.fit(X_train, y_train)
