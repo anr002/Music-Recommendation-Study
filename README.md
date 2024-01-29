@@ -19,6 +19,8 @@
 
 ## Current Updates
 
+Implementing a web interface feature for creating new datasets. The interface takes in a song url, converts to wav, output song prediction, append to data for model improvement.
+
 Successfully implemented House and Alternative. Retrained model and received good predictions. Actively increasing size of House dataset. Alternative has 100 samples.
 
 I am currently improving the dataset with my active learning changes. I am building out the dataset to now have alternative, house music, and Drum and Bass.
