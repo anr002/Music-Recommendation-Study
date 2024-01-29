@@ -19,6 +19,8 @@
 
 ## Current Updates
 
+Successfully implemented House and Alternative. Retrained model and received good predictions. Actively increasing size of House dataset. Alternative has 100 samples.
+
 I am currently improving the dataset with my active learning changes. I am building out the dataset to now have alternative, house music, and Drum and Bass.
 
 The KNN model has had awesome performance. I am currently implementing a active learning aspect to the model where songs being tested, if incorrect, return a prompt asking the user to provide the correct Genre. This new song is appended to the dataset to later be used for retraining.
