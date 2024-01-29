@@ -88,7 +88,7 @@ knn_model = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Pro
 label_encoder = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\label_encoder.pkl') 
 
 # Path to  new song file
-new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Crowd Control.wav'
+new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\The Power (Audio).wav'
 
 # Extract the filename from the file path
 new_song_filename = os.path.basename(new_song_path)

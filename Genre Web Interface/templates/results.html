@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results - Music Genre Classification</title>
+    <style>
+        .alert {
+            padding: 10px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin-bottom: 15px;
+        }
+        .alert-success {
+            background-color: #4CAF50; /* Green */
+        }
+        .alert-error {
+            background-color: #f44336; /* Red */
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    {% if snippet_path != "None" %}
+        <h1>Snippet created at: {{ snippet_path }}</h1>
+        <!-- You can add more details about the snippet here -->
+    {% else %}
+        <h1>No snippet was created.</h1>
+    {% endif %}
+    
+    <a href="{{ url_for('home') }}">Try again</a>
+</body>
+</html>
