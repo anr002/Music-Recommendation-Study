@@ -10,7 +10,7 @@ sys.path.append(tooling2_path)
 from GetNewSongsWEB import download_video, convert_to_wav
 
 app = Flask(__name__)
-app.secret_key = 'H@l!3rocks!'  # Replace with your actual secret key
+app.secret_key = '689231'  # Replace with your actual secret key
 
 @app.route('/')
 def home():
