@@ -108,7 +108,7 @@ knn_model = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Pro
 label_encoder = joblib.load('C:\\Users\\andre\\OneDrive\\Documents\\Data Science Projects\\Music Recommendations Study\\Genre Classification\\Model\\label_encoder.pkl') 
 
 # Path to  new song file
-new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\The Power (Audio).wav'
+new_song_path = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\Full Song\\Take Me Home Country Roads.wav'
 
 new_song_features = extract_features_song(new_song_path)
 

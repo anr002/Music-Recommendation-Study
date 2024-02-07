@@ -10,7 +10,7 @@ sys.path.append(tooling2_path)
 from GetNewSongsWEB import download_video, convert_to_wav
 
 app = Flask(__name__)
-app.secret_key = '689231'  # Replace with your actual secret key
+app.secret_key = os.urandom(16) 
 
 @app.route('/')
 def home():
@@ -21,28 +21,26 @@ def predict():
     try:
         # Get the YouTube link from the form
         youtube_link = request.form['youtube_link']
-        # Get the start and end times from the form
-        start_time = int(request.form['start_time'])
-        end_time = int(request.form['end_time'])
 
-        # Define the root folder where you want to save the .wav file
-        root_folder = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\'
+        # Define the root folder where you want to save the .wav file, saving to different folder for cleanliness
+        root_folder = 'C:\\Users\\andre\\Downloads\\GTZAN\\My_Audio\\WebInterface'
         
         # Use the download_video function to download the video and convert it to wav
         video_path = download_video(youtube_link, root_folder)
         
-        # Get the title of the video for naming the snippet
+        # Get the title of the video for naming the file
         yt = YouTube(youtube_link)
         video_title = yt.title
         
-        # Use the convert_to_wav function to create a snippet
-        snippet_path = convert_to_wav(video_path, root_folder, start_time, end_time, video_title)
+        # Use the convert_to_wav function to convert the whole video
+        wav_path = convert_to_wav(video_path, root_folder, video_title)
         
-        if snippet_path:
-            flash('Snippet created successfully!', 'success')
-            return redirect(url_for('results', snippet_path=snippet_path))
+        if wav_path:
+            flash('Song converted to WAV successfully!', 'success')
+            #Placeholder for genre prediction model logic
+            return redirect(url_for('results', wav_path=wav_path))
         else:
-            flash('Failed to create snippet.', 'error')
+            flash('Failed to convert song.', 'error')
             return redirect(url_for('home'))
     except Exception as e:
         flash(f'An error occurred: {e}', 'error')
