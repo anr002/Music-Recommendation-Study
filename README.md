@@ -21,7 +21,7 @@
 
 Improved model by instead fetching the complete song then break the song into 30 second snippets then predicting the genre of each snippet. In the end, find the genre with the highest average confidence level. This will be the final prediction.
 
-Implementing a web interface feature for creating new datasets. The interface takes in a song url, converts to wav, output song prediction, append to data for model improvement.
+Successfully created a web interface feature for creating new datasets. The interface takes in a song url, converts to wav, output song prediction, append to data for model improvement.
 
 Successfully implemented House and Alternative. Retrained model and received good predictions. Actively increasing size of House dataset. Alternative has 100 samples.
 
