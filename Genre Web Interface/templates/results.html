@@ -15,6 +15,14 @@
         .alert-error {
             background-color: #f44336; /* Red */
         }
+        /* Additional styles for confidence list */
+        .confidence-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .confidence-list li {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -26,12 +34,17 @@
         {% endif %}
     {% endwith %}
     
-    {% if snippet_path != "None" %}
-        <h1>Snippet created at: {{ snippet_path }}</h1>
-        <!-- You can add more details about the snippet here -->
-    {% else %}
-        <h1>No snippet was created.</h1>
-    {% endif %}
+    {% if predicted_genre %}
+    <h1>Predicted Genre: {{ predicted_genre }}</h1>
+    <h2>Confidence Levels:</h2>
+    <ul>
+        {% for genre_name, confidence in confidences.items() %}
+            <li>{{ genre_name|capitalize }}: {{ confidence }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h1>No genre was predicted.</h1>
+{% endif %}
     
     <a href="{{ url_for('home') }}">Try again</a>
 </body>
