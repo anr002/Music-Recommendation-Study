@@ -23,11 +23,6 @@ Improved model by instead fetching the complete song then break the song into 30
 
 Successfully created a web interface feature for creating new datasets. The interface takes in a song url, converts to wav, output song prediction, append to data for model improvement.
 
-Successfully implemented House and Alternative. Retrained model and received good predictions. Actively increasing size of House dataset. Alternative has 100 samples.
-
-I am currently improving the dataset with my active learning changes. I am building out the dataset to now have alternative, house music, and Drum and Bass.
-
-The KNN model has had awesome performance. I am currently implementing a active learning aspect to the model where songs being tested, if incorrect, return a prompt asking the user to provide the correct Genre. This new song is appended to the dataset to later be used for retraining.
 
 ## Overview
 
@@ -156,3 +151,11 @@ The project is still in progress, and future work includes:
 * **Improving the User Interface**: The current GUI will be improved for a better user experience.
 * **Expanding the Lyrics Analysis**: More features will be extracted from the lyrics for a more comprehensive analysis.
 * **Developing the Recommendation System**: The ultimate goal of the project is to develop a recommendation system that can suggest songs based on the user's preferences.
+
+## Old updates
+
+Successfully implemented House and Alternative. Retrained model and received good predictions. Actively increasing size of House dataset. Alternative has 100 samples.
+
+I am currently improving the dataset with my active learning changes. I am building out the dataset to now have alternative, house music, and Drum and Bass.
+
+The KNN model has had awesome performance. I am currently implementing a active learning aspect to the model where songs being tested, if incorrect, return a prompt asking the user to provide the correct Genre. This new song is appended to the dataset to later be used for retraining.
