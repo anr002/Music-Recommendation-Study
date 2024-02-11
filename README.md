@@ -21,7 +21,7 @@
 
 Improved model by instead fetching the complete song then break the song into 30 second snippets then predicting the genre of each snippet. In the end, find the genre with the highest average confidence level. This will be the final prediction.
 
-Successfully created a web interface feature for creating new datasets. The interface takes in a song url, converts to wav, output song prediction, append to data for model improvement.
+Successfully created a web interface using Flask in order to streamline creating new datasets and for friends to test the model. The interface takes in a song url, converts to wav, output song prediction, append to data for model improvement.
 
 
 ## Overview
