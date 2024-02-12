@@ -9,17 +9,16 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
         }
         .container {
-            max-width: 600px;
+            max-width: 40%; /* or any other percentage or pixel value you prefer */
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             text-align: center;
+            margin: auto; /* Center the container on the page */
         }
         .alert {
             padding: 10px;
@@ -37,13 +36,29 @@
         h1 {
             color: #333;
         }
+        .thumbnail-wrapper {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        .thumbnail {
+            width: 80%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .song-info h2 {
+            margin: 10px 0;
+        }
+        .table-container {
+            max-width: 90%;
+            width: 100%;
+            margin: 20px auto;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
         }
         th, td {
-            text-align: left;
+            text-align: center;
             padding: 8px;
             border-bottom: 1px solid #ddd;
         }
@@ -52,25 +67,24 @@
         }
         tr:hover {background-color: #f5f5f5;}
         .confidence-bar-container {
+            max-width: 90%;
             width: 100%;
             background-color: #e9e9e9;
             border-radius: 5px;
             overflow: visible;
-            margin: 10px 0;
-            
+            margin: 10px auto;
         }
         .confidence-bar {
-            height: 20px;
+            height: 30px;
             display: flex;
-            width: 100%;
         }
         .confidence-segment {
             height: 100%;
             transition: width 0.5s ease-in-out;
-            position: relative; /* Needed for absolute positioning of the tooltip */
+            position: relative;
         }
         .tooltip {
-            display: none; /* Keep this as is */
+            display: none;
             width: 120px;
             background-color: black;
             color: #fff;
@@ -78,14 +92,13 @@
             border-radius: 6px;
             padding: 5px 0;
             position: absolute;
-            z-index: 1000; /* Increase z-index to ensure it's on top */
-            bottom: 25px; /* Distance from the bottom of the segment */
+            z-index: 1000;
+            bottom: 25px;
             left: 50%;
-            transform: translateX(-50%); /* Center the tooltip */
-            /* Add visibility and opacity for transition effect */
+            transform: translateX(-50%);
             visibility: hidden;
             opacity: 0;
-            transition: visibility 0s, opacity 0.5s linear;
+            transition: visibility 0s, linear;
         }
         /* Genre colors */
         .alternative { background-color: #8e44ad; } /* Purple */
@@ -123,12 +136,20 @@
                     <div class="alert alert-{{ category }}">{{ message }}</div>
                 {% endfor %}
             {% endif %}
-            {% endwith %}
+        {% endwith %}
         
-            {% if predicted_genre %}
-                <h1>Predicted Genre: <span class="genre-name">{{ predicted_genre }}</span></h1>
-                <h2>Confidence Levels:</h2>
-                <!-- Confidence Levels Table -->
+        {% if predicted_genre %}
+            <div class="song-info">
+                <div class="thumbnail-wrapper">
+                    <img src="{{ thumbnail_url }}" alt="Thumbnail" class="thumbnail">
+                </div>
+                <h2>{{ artist_name }} - {{ song_name }}</h2>
+            </h2>
+            </div>
+            <h1>Predicted Genre: <span class="genre-name">{{ predicted_genre }}</span></h1>
+            <h2>Confidence Levels:</h2>
+
+            <div class="table-container">
                 <table>
                     <thead>
                         <tr>
@@ -145,49 +166,50 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <!-- Confidence Bar Visualization -->
-                <div class="confidence-bar-container">
-                    <div class="confidence-bar">
-                        {% for genre_name, confidence in confidences.items() %}
-                            {% if confidence > 0 %}
-                                <div class="confidence-segment {{ genre_name|lower }}" style="width: {{ confidence * 100 }}%;" onmouseover="showTooltip(this)" onmouseout="hideTooltip(this)">
-                                    <div class="tooltip">{{ genre_name|capitalize }}: {{ confidence|round(2) }}</div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+            </div>
+
+            <div class="confidence-bar-container">
+                <div class="confidence-bar">
+                    {% for genre_name, confidence in confidences.items() %}
+                        {% if confidence > 0 %}
+                            <div class="confidence-segment {{ genre_name|lower }}" style="width: {{ confidence * 100 }}%;" onmouseover="showTooltip(this)" onmouseout="hideTooltip(this)">
+                                <div class="tooltip">{{ genre_name|capitalize }}: {{ confidence|round(2) }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            {% else %}
-                <h1>No genre was predicted.</h1>
-            {% endif %}
-            
-            <a href="{{ url_for('home') }}" class="try-again-link">Try again</a>
-        </div>
-    
-        <script>
-            // Function to show the tooltip
-            function showTooltip(element) {
-                var tooltip = element.querySelector('.tooltip');
-                tooltip.style.display = 'block';
-                tooltip.style.visibility = 'visible';
-                tooltip.style.opacity = '1';
-            }
-    
-            // Function to hide the tooltip
-            function hideTooltip(element) {
-                var tooltip = element.querySelector('.tooltip');
-                tooltip.style.visibility = 'hidden';
-                tooltip.style.opacity = '0';
-                setTimeout(() => {
-                    tooltip.style.display = 'none';
-                }, 500); // Match the transition duration
-            }
-    
-            // Attach event listeners on mouseover and mouseout
-            document.querySelectorAll('.confidence-segment').forEach(segment => {
-                segment.addEventListener('mouseover', () => showTooltip(segment));
-                segment.addEventListener('mouseout', () => hideTooltip(segment));
-            });
-        </script>
-    </body>
-    </html>
+            </div>
+        {% else %}
+            <h1>No genre was predicted.</h1>
+        {% endif %}
+
+        <a href="{{ url_for('home') }}" class="try-again-link">Try again</a>
+    </div>
+
+    <script>
+        // Function to show the tooltip
+        function showTooltip(element) {
+            var tooltip = element.querySelector('.tooltip');
+            tooltip.style.display = 'block';
+            tooltip.style.visibility = 'visible';
+            tooltip.style.opacity = '1';
+        }
+
+        // Function to hide the tooltip
+        function hideTooltip(element) {
+            var tooltip = element.querySelector('.tooltip');
+            tooltip.style.visibility = 'hidden';
+            tooltip.style.opacity = '0';
+            setTimeout(() => {
+                tooltip.style.display = 'none';
+            }, 500); // Match the transition duration
+        }
+
+        // Attach event listeners on mouseover and mouseout
+        document.querySelectorAll('.confidence-segment').forEach(segment => {
+            segment.addEventListener('mouseover', () => showTooltip(segment));
+            segment.addEventListener('mouseout', () => hideTooltip(segment));
+        });
+    </script>
+</body>
+</html>
