@@ -1,6 +1,7 @@
 # Music Recommendation Study
 
 ## Table of Contents
+- [Current Updates](#current-updates)
 - [Overview](#overview)
 - [Issues](#issues)
 - [Genre Classification as a Stepping Stone](#genre-classification-as-a-stepping-stone)
@@ -13,6 +14,7 @@
   - [Successful Genre Prediction for Jazz Songs](#successful-genre-prediction-for-jazz-songs)
   - [Building a Test Dataset](#building-a-test-dataset)
 - [Features](#features)
+- [Audio Features Explanation](#audio-features-explanation)
 - [Librosa Analysis](#librosa-analysis)
 - [Lyrics Analysis](#lyrics-analysis)
 - [Future Work](#future-work)
