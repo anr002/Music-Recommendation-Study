@@ -108,6 +108,40 @@ The feature extraction process is a critical step in the genre classification pi
 
 Each feature captures a different characteristic of the audio signal, contributing to a robust representation of the song's musical qualities.
 
+# Audio Features Explanation
+
+This project utilizes `librosa` for extracting various audio features crucial for music genre classification, these are the same features that the GTZAN dataset acquired. Below is a brief explanation of each feature:
+
+## Chroma Frequencies
+Chroma frequencies summarize a song's harmonic content by mapping the spectrum of pitches into 12 bins corresponding to the musical chromatic scale, capturing the "color" of music.
+
+## Root Mean Square (RMS) Energy
+RMS Energy quantifies the power or loudness of an audio signal, providing insight into the dynamic range and energy levels of a track.
+
+## Spectral Centroid
+The spectral centroid indicates the "center of mass" of the spectrum, offering an idea of the brightness of a sound, with higher values indicating brighter sounds.
+
+## Spectral Bandwidth
+Spectral bandwidth measures the spread of the sound across the frequency spectrum, helping distinguish between pure/harmonic sounds and noisy/dissonant sounds.
+
+## Spectral Rolloff
+Spectral rolloff is the frequency below which a certain percentage of the total spectral energy is contained, separating harmonic content from noise.
+
+## Zero Crossing Rate
+The zero crossing rate measures how frequently the audio signal changes sign, useful for analyzing the noisiness or percussiveness of a sound.
+
+## Harmonic and Percussive Components
+Music signals can be decomposed into harmonic (tonal) and percussive (rhythmic) components, useful for tasks like melody extraction or beat detection.
+
+## Tempo
+Tempo, measured in beats per minute (BPM), defines the rhythm and pace of a piece, crucial for genre classification as different genres often have characteristic tempos.
+
+## Mel-Frequency Cepstral Coefficients (MFCCs)
+MFCCs capture the timbral aspects of sound, representing the shape of the spectral envelope and correlating with the perceived sound texture, essential for music genre classification.
+
+Each of these features captures a unique aspect of music, providing a comprehensive dataset for analyzing and classifying music genres.
+
+---
 ### KNN Model for Genre Classification
 The extracted features were then scaled and fed into a pre-trained K-Nearest Neighbors (KNN) model. This model was initially trained on the GTZAN dataset, which is a standard dataset for music genre classification tasks. By providing the model with a rich set of features from the classic jazz songs, it was able to predict the genre with a high degree of accuracy.
 
