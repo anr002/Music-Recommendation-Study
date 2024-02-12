@@ -19,7 +19,8 @@
 
 ## Current Updates
 
-![image](https://github.com/anr002/Music-Recommendation-Study/assets/59952372/b8e5161f-69db-4564-abba-442d470ca9df)
+![image](https://github.com/anr002/Music-Recommendation-Study/assets/59952372/083245b7-3130-4648-9eec-b4eb28c7ddfc)
+
 
 
 Improved model by instead fetching the complete song then break the song into 30 second snippets then predicting the genre of each snippet. In the end, find the genre with the highest average confidence level. This will be the final prediction.
